@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      each cat in categories
+        if cat.stocks && cat.stocks.length > 0
+          .panel.panel-default         
+            .panel-heading
+              h3: a(href='/results?cate=#{cat._id}&page=0') #{cat.name}
+            .panel-body
+              each item in cat.stocks
+                .col-md-2
+                  .thumbnail
+                    div
+                      //img(src="#{item.poster}", alt="#{item.title}")
+                      h3 #{item.summary}
+                    .caption
+                      h5 #{item.title}
+                      p: a.btn.btn-primary(href="/stock/#{item._id}",role="button") 查看详情
+  script(src="/requirejs/require.js",data-main="/pub/common.js")

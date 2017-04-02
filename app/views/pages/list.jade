@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      table.table.table-hover.table-bordered
+        thead
+          tr
+            th 股票代码
+            th pv
+            th 更新时间
+            th 查看
+            th 更新
+            th 删除
+        tbody
+          each item in stocks
+            tr(class="item-id-#{item._id}")
+              td #{item.title}
+              td #{item.pv}
+              td #{moment(item.meta.updateAt).format('MM/DD/YYYY')}
+              td: a(target="_blank", href="../../stock/#{item._id}") 查看
+              td: a(target="_blank", href="../stock/update/#{item._id}") 修改
+              td
+                button.delStore.btn.btn-danger.del(type="button", data-id="#{item._id}") 删除
+      a(target="_blank", href="../stock/new") 添加股票
+  script(src="/requirejs/require.js",data-main="/pub/admin.js")
+  //- script(src="/pub/admin.js")
+  //- script(src="/pub/js/main.js")
+  //- 根目录下建立.bowerrc可指定外部js的目录

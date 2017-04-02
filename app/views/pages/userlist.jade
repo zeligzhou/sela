@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      table.table.table-hover.table-bordered
+        thead
+          tr
+            th 用户名
+            th 更新时间
+            th 权限
+            th 更新
+            th 删除
+        tbody
+          each item in users
+            tr(class="item-id-#{item._id}")
+              td #{item.name}
+              td #{moment(item.meta.updateAt).format('MM/DD/YYYY')}
+              td: input.roleValue.form-control(name="user[role]", type="text", value="#{item.role}")
+              td: button.modRole.btn.del(type="button", data-id="#{item._id}") 修改
+              td
+                button.delUser.btn.btn-danger.del(type="button", data-id="#{item._id}") 删除
+  script(src="/requirejs/require.js",data-main="/pub/admin.js")
+  //- script(src="/pub/admin.js")
+  //- script(src="/pub/js/main.js")
+  //- 根目录下建立.bowerrc可指定外部js的目录

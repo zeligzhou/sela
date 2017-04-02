@@ -1,0 +1,50 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      form.form-horizontal(method="post", action="/admin/stock/post" , enctype= "multipart/form-data")
+        if stock._id
+          input(type="hidden", name="stock[_id]", value="#{stock._id}")
+        .form-group
+          label.col-sm-2.control-label(for="inputCategory") 股票分类
+          .col-sm-10
+            input#inputCategory.form-control(type="text", name="stock[categoryName]", value=stock.categoryName)
+        .form-group
+          label.col-sm-2.control-label 可选类别：
+          each cat in categories
+            lable.radio-inline
+              if stock._id
+                input(type="radio", name="stock[category]", value="#{cat._id}", checked=cat._id.toString()==stock.category.toString())
+                | #{cat.name}
+              else
+                input(type="radio", name="stock[category]", value="#{cat._id}")
+                | #{cat.name}
+        .form-group
+          label.col-sm-2.control-label(for="inputTitle") 股票代码
+          .col-sm-10
+            input#inputTitle.form-control(type="text", name="stock[title]", value="#{stock.title}")
+        //.form-group
+         // label.col-sm-2.control-label(for="inputUrl") 商店地址
+         // .col-sm-10
+         //   input#inputUrl.form-control(type="text", name="stock[url]", value="#{stock.url}")
+        //.form-group
+          //label.col-sm-2.control-label(for="inputPoster") 海报地址
+          //.col-sm-10
+           // input#inputPoster.form-control(type="text", name="stock[poster]", value="#{stock.poster}")
+        //.form-group
+          //label.col-sm-2.control-label(for="uploadPoster") 海报上传
+          //.col-sm-10
+            //input#uploadPoster(type="file", name="uploadPoster")
+        .form-group
+          label.col-sm-2.control-label(for="inputSummary") 股票名字
+          .col-sm-10
+            input#inputSummary.form-control(type="text", name="stock[summary]", value="#{stock.summary}")
+        .form-group
+          label.col-sm-2.control-label(for="inputCountry") 国家
+          .col-sm-10
+            input#inputCountry.form-control(type="text", name="stock[country]", value="#{stock.country}")
+        .form-group
+          .col-sm-offset-2.col-sm-10
+          input#inputSubmit.btn(type="submit")
+  script(src="/requirejs/require.js",data-main="/pub/common.js")
