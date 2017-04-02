@@ -1,6 +1,5 @@
-#Sela
-## 问题合集
-- bower init 和 npm init
+## Sela
+### 问题合集
 - app的delete方法
 - schema的使用
 - mongod在bin里，dbpath在data
